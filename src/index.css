@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  @apply bg-white text-sand-ink font-sans antialiased transition-colors duration-300 dark:bg-teal-night dark:text-white/90;
+  font-feature-settings: "cv11", "ss01";
+}
+
+h1, h2, h3, h4 {
+  @apply font-display;
+  text-wrap: balance;
+}
+
+::selection {
+  background: #7FBFA8;
+  color: #0F4C46;
+}
+
+.dark ::selection {
+  background: #0F4C46;
+  color: #F4FAF8;
+}
+
+.container-page {
+  @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+}
+
+.eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-teal-mid;
+}
+
+.section-pad {
+  @apply py-20 md:py-28;
+}
+
+/* Expands the tappable/clickable area of small controls (icons, dots) without
+   changing their visual size — keeps desktop pixel-identical while giving
+   mobile/tablet a comfortable ≥44px touch target.
+   Don't combine with an explicit `absolute`/`fixed`/`sticky` utility class —
+   this rule sets `position: relative` and, being plain CSS after Tailwind's
+   utilities, wins the cascade over same-specificity utility classes and
+   silently overrides them. Only use on elements that need no position of
+   their own (or that are already big enough, like the 44px lightbox close
+   button, don't need it at all). */
+.tap-area {
+  position: relative;
+}
+.tap-area::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

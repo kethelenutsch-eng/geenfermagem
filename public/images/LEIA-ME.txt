@@ -1,0 +1,23 @@
+Pasta reservada para as fotos reais do site.
+
+Basta salvar os arquivos AQUI, com exatamente estes nomes, que o site
+troca o espaço reservado pela foto automaticamente (nenhuma alteração
+de código é necessária):
+
+1) hero-enfermeira.jpg
+   Usada na primeira seção (topo do site).
+   Foto de atendimento domiciliar (enfermeira em ação, ambiente da casa).
+   Formato retrato, proporção aproximada 4:5 (ex.: 1000 x 1250px ou maior).
+
+2) sobre-gabriella.jpg
+   Usada na seção "Sobre".
+   Foto da Gabriella Elen (retrato profissional).
+   Formato retrato, proporção aproximada 4:5 (ex.: 1000 x 1250px ou maior).
+
+Dicas:
+- Prefira .jpg de boa qualidade mas não muito pesado (idealmente < 500KB
+  cada, pode comprimir em squoosh.app ou tinypng.com antes de salvar aqui).
+- Se o nome do arquivo vier diferente da câmera/celular, é só renomear
+  para os nomes exatos acima.
+- Este arquivo LEIA-ME.txt pode ser apagado depois que as fotos forem
+  adicionadas — ele não é usado pelo site.

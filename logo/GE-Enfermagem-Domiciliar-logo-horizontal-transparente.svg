@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GE Enfermagem Domiciliar — assinatura horizontal (ícone + nome), fundo transparente -->
+<!-- Versão aprovada: 05/08/2026 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 180" width="620" height="180">
+  <title>GE Enfermagem Domiciliar</title>
+  <g transform="translate(20,6) scale(0.6)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M190.92,195.41 A90,90 0 1 1 190.92,84.59" stroke="#1B5E56" stroke-width="28"/>
+    <path d="M190.92,195.41 L135,195.41 L135,150" stroke="#1B5E56" stroke-width="28"/>
+    <line x1="222" y1="100" x2="222" y2="235" stroke="#3E8E82" stroke-width="28"/>
+    <line x1="222" y1="100" x2="284" y2="100" stroke="#3E8E82" stroke-width="28"/>
+    <line x1="222" y1="167" x2="268" y2="167" stroke="#3E8E82" stroke-width="28"/>
+    <line x1="222" y1="235" x2="284" y2="235" stroke="#3E8E82" stroke-width="28"/>
+  </g>
+  <text x="230" y="95" font-family="'Century Gothic','Avenir Next','Segoe UI Semibold',system-ui,sans-serif" font-size="56" font-weight="700" letter-spacing="3" fill="#1B5E56">GE</text>
+  <text x="230" y="123" font-family="'Segoe UI',system-ui,sans-serif" font-size="20" font-weight="500" letter-spacing="5" fill="#74847F">ENFERMAGEM DOMICILIAR</text>
+</svg>

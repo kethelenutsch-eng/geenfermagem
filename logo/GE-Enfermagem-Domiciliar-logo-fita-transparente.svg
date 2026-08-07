@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GE Enfermagem Domiciliar — logo completa (ícone fita + assinatura), fundo transparente -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 55 480 355" width="480" height="355">
+  <title>GE Enfermagem Domiciliar</title>
+  <defs>
+    <linearGradient id="fitaGrad3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0F4C46"/>
+      <stop offset="1" stop-color="#9FCFBB"/>
+    </linearGradient>
+  </defs>
+  <text x="240" y="330" text-anchor="middle" font-family="'Playfair Display','Bodoni MT','Georgia','Times New Roman',serif" font-size="300" font-weight="700" letter-spacing="-32" fill="#0F4C46">GE</text>
+  <path d="M110,222 C160,228 210,240 250,252 C275,232 295,212 320,200 C345,192 365,193 388,196 L388,212 C365,209 345,208 320,216 C295,228 275,248 250,268 C210,256 160,244 110,238 Z" fill="url(#fitaGrad3)"/>
+  <path d="M115,295 Q90,318 68,340 Q50,358 35,372" fill="none" stroke="#7FA98A" stroke-width="3"/>
+  <path d="M62,346 Q46,354 27,348 Q35,330 55,328 Z" fill="#9FCFBB"/>
+  <path d="M82,325 Q66,333 47,327 Q55,309 75,307 Z" fill="#B7DAC6"/>
+  <path d="M100,307 Q84,315 65,309 Q73,291 93,289 Z" fill="#CBE6D6"/>
+  <text x="240" y="378" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif" font-size="22" font-weight="500" letter-spacing="6" fill="#0F4C46">ENFERMAGEM DOMICILIAR</text>
+</svg>

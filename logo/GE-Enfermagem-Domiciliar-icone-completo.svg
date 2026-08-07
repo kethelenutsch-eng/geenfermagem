@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GE Enfermagem Domiciliar — emblema completo (anel, telhado, monograma, coração/pulso, estetoscópio, ramo, mão), fundo transparente -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 590" width="550" height="590">
+  <title>GE Enfermagem Domiciliar — emblema completo</title>
+  <defs>
+    <linearGradient id="geFullGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F4C46"/>
+      <stop offset="1" stop-color="#7FBFA8"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(15,15)">
+    <!-- anel incompleto -->
+    <path d="M466.8,223.5 A210,210 0 1 1 331.8,62.7" fill="none" stroke="url(#geFullGrad)" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- telhado -->
+    <path d="M210,175 L260,130 L310,175" fill="none" stroke="#1B5E56" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="248" y="182" width="10" height="10" fill="#3E8E82"/>
+    <rect x="262" y="182" width="10" height="10" fill="#3E8E82"/>
+    <rect x="248" y="196" width="10" height="10" fill="#3E8E82"/>
+    <rect x="262" y="196" width="10" height="10" fill="#3E8E82"/>
+
+    <!-- monograma -->
+    <text x="260" y="350" text-anchor="middle" font-family="'Playfair Display','Bodoni MT','Didot',Georgia,'Times New Roman',serif" font-size="195" font-weight="700" letter-spacing="-26" fill="url(#geFullGrad)">GE</text>
+
+    <!-- coração com pulso -->
+    <path d="M300,450 C300,450 258,418 258,392 C258,375 273,365 286,375 C291,379 296,384 300,391 C304,384 309,379 314,375 C327,365 342,375 342,392 C342,418 300,450 300,450 Z" fill="none" stroke="#1B5E56" stroke-width="5"/>
+    <path d="M268,398 L285,398 L293,382 L303,412 L311,394 L318,398 L332,398" fill="none" stroke="#3E8E82" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- estetoscópio -->
+    <path d="M322,10 Q316,22 347.2,20.4" fill="none" stroke="#1B5E56" stroke-width="6" stroke-linecap="round"/>
+    <path d="M368,8 Q372,20 347.2,20.4" fill="none" stroke="#1B5E56" stroke-width="6" stroke-linecap="round"/>
+    <path d="M347.2,20.4 A255,255 0 0 1 304.3,511.1" fill="none" stroke="url(#geFullGrad)" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="304.3" cy="511.1" r="32" fill="none" stroke="#1B5E56" stroke-width="6"/>
+    <circle cx="304.3" cy="511.1" r="13" fill="none" stroke="#3E8E82" stroke-width="4"/>
+
+    <!-- ramo -->
+    <path d="M130,440 Q100,380 85,320 Q75,290 67,268" fill="none" stroke="#3E8E82" stroke-width="4"/>
+    <path d="M120,410 Q133.9,390.1 158,392 Q144.1,411.9 120,410 Z" fill="#7FBFA8"/>
+    <path d="M103,373 Q78.9,377.9 62,360 Q86.1,355.1 103,373 Z" fill="#7FBFA8"/>
+    <path d="M88,338 Q103.9,319.8 128,322 Q112.1,340.2 88,338 Z" fill="#9FCFBB"/>
+    <path d="M76,303 Q53.8,308.3 36,294 Q58.2,288.7 76,303 Z" fill="#9FCFBB"/>
+    <path d="M67,268 Q77.6,252.8 96,254 Q85.4,269.2 67,268 Z" fill="#BFE3DC"/>
+
+    <!-- mão -->
+    <path d="M45,465 C28,450 30,422 52,410 C65,403 80,405 92,412 C88,398 96,388 108,392 C120,396 122,412 112,422 L138,435 C152,444 150,464 133,475 C108,492 62,489 44,475 C38,470 40,468 45,465 Z" fill="url(#geFullGrad)"/>
+  </g>
+</svg>

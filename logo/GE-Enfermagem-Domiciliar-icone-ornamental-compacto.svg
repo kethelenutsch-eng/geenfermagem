@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GE Enfermagem Domiciliar — ícone ornamentado, versão compacta (sem os acentos finos) -->
+<!-- Uso: header/navbar, rodapé e qualquer aplicação pequena (a partir de ~40px) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
+  <title>GE Enfermagem Domiciliar — brasão compacto</title>
+  <defs>
+    <linearGradient id="geMonoGradCompact" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F4C46"/>
+      <stop offset="1" stop-color="#3E8E82"/>
+    </linearGradient>
+  </defs>
+  <circle cx="160" cy="155" r="125" fill="none" stroke="url(#geMonoGradCompact)" stroke-width="8"/>
+  <text x="160" y="205" text-anchor="middle" font-family="'Playfair Display','Bodoni MT','Didot',Georgia,'Times New Roman',serif" font-size="118" font-weight="700" letter-spacing="-16" fill="url(#geMonoGradCompact)">GE</text>
+</svg>
