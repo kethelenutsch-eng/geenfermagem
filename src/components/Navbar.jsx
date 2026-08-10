@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { whatsappLink } from "../lib/whatsapp";
@@ -87,7 +88,7 @@ export default function Navbar() {
     };
   }, [open]);
 
-  return (
+  const header = (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
@@ -146,7 +147,18 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
+    </header>
+  );
 
+  // O drawer/overlay vai para um portal fora do <header> de propósito: o
+  // header ganha "backdrop-blur" quando a página rola, e blur/filter num
+  // ancestral vira "containing block" para elementos fixed dentro dele —
+  // na prática, o menu ficava preso na altura pequena do header em vez de
+  // cobrir a tela inteira. Renderizando direto no body, fica sempre
+  // relativo à tela de verdade, não importa o que aconteça no header.
+  return createPortal(
+    <>
+      {header}
       <AnimatePresence>
         {open && (
           <>
@@ -215,6 +227,7 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>,
+    document.body
   );
 }
