@@ -8,16 +8,16 @@ export default function Services() {
       <div className="container-page">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">Nossos serviços</span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-teal-deep dark:text-white md:text-4xl">
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-teal-deep dark:text-white sm:mt-4 xs:text-3xl md:text-4xl">
             Cuidados de enfermagem sob medida
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-sand-stone dark:text-white/65">
+          <p className="mt-3 text-sm leading-relaxed text-sand-stone dark:text-white/65 sm:mt-4 sm:text-base">
             Cada procedimento é realizado com técnica, atenção aos detalhes e o
             acolhimento que só o cuidado em casa proporciona.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-9 grid gap-4 sm:mt-10 sm:gap-5 md:mt-14 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {services.map((service, i) => (
             <motion.article
               key={service.title}

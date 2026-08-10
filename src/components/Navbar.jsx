@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { whatsappLink } from "../lib/whatsapp";
 import LogoMark from "./LogoMark";
@@ -24,6 +25,20 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // trava o scroll da página por trás enquanto o menu está aberto, e
+  // fecha com Esc — o drawer nunca deve empurrar/redimensionar o conteúdo
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -32,13 +47,13 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="container-page flex h-20 items-center justify-between sm:h-24 lg:h-28">
-        <a href="#topo" className="flex items-center gap-2 -ml-4">
+      <nav className="container-page flex h-16 items-center justify-between sm:h-20 md:h-24 lg:h-28">
+        <a href="#topo" className="flex items-center gap-2 -ml-3 sm:-ml-4">
           {/* variante escura da logo (texto/traço em teal) para fundo claro,
               e variante clara para quando o modo escuro estiver ativo */}
-          <LogoMark variant="dark" className="h-12 sm:h-14 lg:h-16 dark:hidden" />
-          <LogoMark variant="light" className="hidden h-12 dark:block sm:h-14 lg:h-16" />
-          <div className="text-[10px] font-medium uppercase tracking-[0.14em] text-sand-stone dark:text-white/50">
+          <LogoMark variant="dark" className="h-10 sm:h-12 md:h-14 lg:h-16 dark:hidden" />
+          <LogoMark variant="light" className="hidden h-10 dark:block sm:h-12 md:h-14 lg:h-16" />
+          <div className="text-[9px] font-medium uppercase tracking-[0.12em] text-sand-stone dark:text-white/50 sm:text-[10px] sm:tracking-[0.14em]">
             Enfermagem
             <br />
             Domiciliar
@@ -71,47 +86,84 @@ export default function Navbar() {
           </a>
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden">
           <ThemeToggle />
           <button
             className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-sand-ink dark:text-white"
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => setOpen(true)}
             aria-label="Abrir menu"
             aria-expanded={open}
           >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <Menu className="h-6 w-6" />
           </button>
         </div>
       </nav>
 
-      {open && (
-        <div className="border-t border-sand-line bg-white dark:border-white/10 dark:bg-teal-night lg:hidden">
-          <ul className="container-page flex flex-col gap-1 py-4">
-            {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
+      <AnimatePresence>
+        {open && (
+          <>
+            <motion.div
+              key="overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-40 bg-black/55 lg:hidden"
+              onClick={() => setOpen(false)}
+              aria-hidden="true"
+            />
+            <motion.div
+              key="drawer"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu de navegação"
+              className="fixed inset-y-0 right-0 z-50 flex w-[80%] max-w-[340px] flex-col bg-white shadow-lift dark:bg-teal-night lg:hidden"
+            >
+              <div className="flex h-16 shrink-0 items-center justify-between border-b border-sand-line px-5 dark:border-white/10 sm:h-20">
+                <span className="font-display text-sm font-bold text-teal-deep dark:text-white">Menu</span>
+                <button
                   onClick={() => setOpen(false)}
-                  className="block rounded-xl px-3 py-2.5 text-sm font-medium text-sand-ink hover:bg-teal-mist dark:text-white/85 dark:hover:bg-white/5"
+                  aria-label="Fechar menu"
+                  className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-sand-ink transition-colors hover:bg-teal-mist dark:text-white dark:hover:bg-white/10"
                 >
-                  {l.label}
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <ul className="flex-1 overflow-y-auto px-3 py-4">
+                {links.map((l) => (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      onClick={() => setOpen(false)}
+                      className="block rounded-xl px-3.5 py-3.5 text-base font-medium text-sand-ink transition-colors hover:bg-teal-mist dark:text-white/90 dark:hover:bg-white/5"
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="shrink-0 border-t border-sand-line p-4 pb-[max(1rem,env(safe-area-inset-bottom))] dark:border-white/10">
+                <a
+                  href={whatsappLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-center gap-2 rounded-full bg-teal-deep px-5 py-3.5 text-sm font-semibold text-white shadow-card transition-colors hover:bg-teal"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Agendar pelo WhatsApp
                 </a>
-              </li>
-            ))}
-            <li className="pt-2">
-              <a
-                href={whatsappLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-full bg-teal-deep px-5 py-3 text-sm font-semibold text-white"
-              >
-                <MessageCircle className="h-4 w-4" />
-                Agendar pelo WhatsApp
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

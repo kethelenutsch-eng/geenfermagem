@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-teal-deep pt-4">
       <div className="border-t border-white/10">
-        <div className="container-page flex flex-col items-center gap-5 py-10 text-center sm:flex-row sm:justify-between sm:text-left">
+        <div className="container-page flex flex-col items-center gap-4 py-8 text-center sm:flex-row sm:justify-between sm:gap-5 sm:py-10 sm:text-left">
           <div className="leading-tight">
             <p className="font-display text-sm font-bold text-white">
               GE Enfermagem Domiciliar

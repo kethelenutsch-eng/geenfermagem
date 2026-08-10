@@ -4,7 +4,7 @@ import { trustPoints } from "../data/content";
 export default function TrustBar() {
   return (
     <section className="border-y border-sand-line bg-white transition-colors duration-300 dark:border-white/10 dark:bg-teal-night">
-      <div className="container-page grid grid-cols-2 gap-6 py-10 md:grid-cols-4 md:gap-8 md:py-12">
+      <div className="container-page grid grid-cols-1 gap-4 py-8 xs:grid-cols-2 xs:gap-5 sm:gap-6 sm:py-10 md:grid-cols-4 md:gap-8 md:py-12">
         {trustPoints.map((item, i) => (
           <motion.div
             key={item.label}

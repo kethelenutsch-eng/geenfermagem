@@ -51,7 +51,7 @@ export default function ServiceArea() {
 
   return (
     <section id="area-atendimento" className="section-pad bg-teal-deep text-white">
-      <div className="container-page grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="container-page grid items-center gap-9 sm:gap-11 md:gap-14 lg:grid-cols-[0.9fr_1.1fr]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,14 +59,14 @@ export default function ServiceArea() {
           transition={{ duration: 0.6 }}
         >
           <span className="eyebrow text-teal-soft">Área de atendimento</span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-white sm:mt-4 xs:text-3xl md:text-4xl">
             Cuidado que chega até você
           </h2>
-          <p className="mt-5 max-w-md text-base leading-relaxed text-white/70">
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-white/70 sm:mt-5 sm:text-base">
             Atendimento domiciliar em toda a Região Metropolitana de Belo
             Horizonte, incluindo:
           </p>
-          <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3">
+          <ul className="mt-5 grid grid-cols-1 gap-x-6 gap-y-2.5 xs:grid-cols-2 sm:mt-6 sm:gap-y-3">
             {cities.map((city) => (
               <li key={city.name} className="flex items-center gap-2 text-sm font-medium text-white">
                 <MapPin className="h-4 w-4 shrink-0 text-teal-soft" />
@@ -74,7 +74,7 @@ export default function ServiceArea() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-sm text-white/60">
+          <p className="mt-5 text-sm text-white/60 sm:mt-6">
             E cidades vizinhas. Consulte disponibilidade pelo WhatsApp.
           </p>
         </motion.div>
@@ -97,18 +97,19 @@ export default function ServiceArea() {
           onMouseLeave={handleMouseLeave}
           onClick={() => setIsExpanded((v) => !v)}
         >
-          {/* selo "ao vivo" */}
+          {/* selo "ao vivo" — bem pequeno no mobile para não esbarrar no
+              rótulo de "Confins" (o mapa fica bem baixo em telas estreitas) */}
           <motion.div
-            className="absolute right-6 top-6 z-10 flex items-center gap-1.5 rounded-full bg-black/20 px-2.5 py-1 backdrop-blur-sm"
+            className="absolute right-1.5 top-1.5 z-10 flex items-center gap-1 rounded-full bg-black/20 px-1.5 py-0.5 backdrop-blur-sm sm:right-6 sm:top-6 sm:gap-1.5 sm:px-2.5 sm:py-1"
             animate={{ scale: isHovered ? 1.05 : 1 }}
             transition={{ duration: 0.2 }}
           >
             <motion.span
-              className="h-1.5 w-1.5 rounded-full bg-teal-soft"
+              className="h-1 w-1 shrink-0 rounded-full bg-teal-soft sm:h-1.5 sm:w-1.5"
               animate={{ opacity: [1, 0.4, 1] }}
               transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
             />
-            <span className="text-[10px] font-medium uppercase tracking-wide text-white/80">
+            <span className="text-[8px] font-medium uppercase tracking-wide text-white/80 sm:text-[10px]">
               Ao vivo
             </span>
           </motion.div>
@@ -196,8 +197,8 @@ export default function ServiceArea() {
                     <span
                       className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap text-center font-display text-[#F4FAF8] ${
                         isHub
-                          ? "-top-[40px] text-[15px] font-bold lg:-top-[34px] lg:text-[13px]"
-                          : "-top-[32px] text-[12px] font-semibold lg:-top-[26px] lg:text-[10px]"
+                          ? "-top-[42px] text-[15px] font-bold lg:-top-[34px] lg:text-[13px]"
+                          : "-top-[35px] text-[12px] font-semibold lg:-top-[26px] lg:text-[10px]"
                       }`}
                     >
                       {name}

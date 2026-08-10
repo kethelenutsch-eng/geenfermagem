@@ -7,12 +7,12 @@ export default function HowItWorks() {
       <div className="container-page">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">Como funciona</span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-teal-deep dark:text-white md:text-4xl">
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-teal-deep dark:text-white sm:mt-4 xs:text-3xl md:text-4xl">
             Do primeiro contato ao acompanhamento
           </h2>
         </div>
 
-        <div className="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-6">
+        <div className="relative mt-9 grid gap-7 sm:mt-10 sm:gap-8 md:mt-16 md:grid-cols-4 md:gap-6">
           <div className="absolute left-0 right-0 top-7 hidden h-px bg-sand-line dark:bg-white/10 md:block" />
           {timeline.map((step, i) => (
             <motion.div
@@ -23,16 +23,16 @@ export default function HowItWorks() {
               transition={{ duration: 0.55, delay: i * 0.12 }}
               className="relative flex flex-col items-start md:items-center md:text-center"
             >
-              <div className="relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full bg-teal-deep text-white shadow-card dark:bg-teal-soft dark:text-teal-night">
-                <step.icon className="h-6 w-6" strokeWidth={1.75} />
+              <div className="relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-full bg-teal-deep text-white shadow-card dark:bg-teal-soft dark:text-teal-night sm:h-14 sm:w-14">
+                <step.icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.75} />
               </div>
-              <span className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-teal-mid dark:text-teal-soft">
+              <span className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-teal-mid dark:text-teal-soft sm:mt-4">
                 Etapa {i + 1}
               </span>
-              <h3 className="mt-1.5 font-display text-lg font-bold text-teal-deep dark:text-white">
+              <h3 className="mt-1.5 font-display text-base font-bold text-teal-deep dark:text-white sm:text-lg">
                 {step.title}
               </h3>
-              <p className="mt-2 max-w-[22ch] text-sm leading-relaxed text-sand-stone dark:text-white/65">
+              <p className="mt-2 text-sm leading-relaxed text-sand-stone dark:text-white/65 md:max-w-[22ch]">
                 {step.description}
               </p>
             </motion.div>

@@ -65,7 +65,7 @@ function DetailPhoto({ photo, children }) {
 
 export default function Hero() {
   return (
-    <section id="topo" className="relative overflow-hidden bg-teal-mist pt-28 pb-16 transition-colors duration-300 dark:bg-teal-night sm:pt-32 sm:pb-20 md:pt-36 lg:pt-40 lg:pb-28">
+    <section id="topo" className="relative overflow-hidden bg-teal-mist pt-24 pb-12 transition-colors duration-300 dark:bg-teal-night sm:pt-28 sm:pb-16 md:pt-32 lg:pt-40 lg:pb-28">
       {/* organic teal shapes in the background */}
       <div className="pointer-events-none absolute inset-0 -z-0 overflow-hidden">
         <div className="absolute -top-24 right-[6%] h-[420px] w-[420px] rounded-[45%_55%_60%_40%/50%_45%_55%_50%] bg-teal-soft/30 blur-2xl animate-blob dark:bg-teal-soft/10" />
@@ -73,7 +73,7 @@ export default function Hero() {
         <div className="absolute -bottom-16 left-[8%] h-[300px] w-[300px] rounded-[50%_50%_40%_60%/55%_45%_55%_45%] bg-teal-pale blur-xl animate-blob-slow dark:bg-teal-deep/20" />
       </div>
 
-      <div className="container-page relative grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+      <div className="container-page relative grid items-center gap-9 sm:gap-11 md:gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -84,29 +84,29 @@ export default function Hero() {
             Enfermagem domiciliar em Belo Horizonte
           </span>
 
-          <h1 className="mt-5 max-w-xl font-display text-4xl font-bold leading-[1.12] tracking-tight text-teal-deep dark:text-white md:text-5xl">
+          <h1 className="mt-4 max-w-xl font-display text-[1.75rem] font-bold leading-[1.15] tracking-tight text-teal-deep dark:text-white sm:mt-5 sm:text-4xl md:text-4xl lg:text-5xl">
             Cuidado de enfermagem humanizado no conforto da sua casa.
           </h1>
 
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-sand-stone dark:text-white/65">
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-sand-stone dark:text-white/65 sm:mt-6 sm:text-lg">
             Assistência de enfermagem personalizada para adultos, idosos e pacientes em
             recuperação, com segurança, ética e acolhimento, em toda a Região
             Metropolitana de Belo Horizonte.
           </p>
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-6 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:gap-4">
             <a
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-teal-deep px-7 py-4 text-sm font-semibold text-white shadow-lift transition-transform hover:-translate-y-0.5 hover:bg-teal"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-teal-deep px-6 py-3.5 text-sm font-semibold text-white shadow-lift transition-transform hover:-translate-y-0.5 hover:bg-teal sm:px-7 sm:py-4"
             >
               <MessageCircle className="h-4 w-4" />
               Agendar pelo WhatsApp
             </a>
             <a
               href="#servicos"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-teal-deep/20 bg-white px-7 py-4 text-sm font-semibold text-teal-deep transition-colors hover:border-teal-deep/40 hover:bg-teal-pale dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:border-white/30 dark:hover:bg-white/10"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-teal-deep/20 bg-white px-6 py-3.5 text-sm font-semibold text-teal-deep transition-colors hover:border-teal-deep/40 hover:bg-teal-pale dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:border-white/30 dark:hover:bg-white/10 sm:px-7 sm:py-4"
             >
               Conhecer os serviços
               <ArrowRight className="h-4 w-4" />

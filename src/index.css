@@ -40,7 +40,7 @@ h1, h2, h3, h4 {
 }
 
 .section-pad {
-  @apply py-20 md:py-28;
+  @apply py-12 xs:py-14 sm:py-16 md:py-20 lg:py-28;
 }
 
 /* Expands the tappable/clickable area of small controls (icons, dots) without

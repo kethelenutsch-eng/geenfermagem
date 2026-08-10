@@ -4,6 +4,12 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
+      screens: {
+        // breakpoint extra entre o padrão "base" (celulares bem pequenos,
+        // ~320-479px) e "sm" (640px) — cobre a faixa de celulares maiores
+        // (390-430px) sem afetar tablet/desktop, que já usam sm/md/lg.
+        xs: "480px",
+      },
       colors: {
         teal: {
           deep: "#0F4C46",

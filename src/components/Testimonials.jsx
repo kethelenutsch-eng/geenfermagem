@@ -87,19 +87,19 @@ export default function Testimonials() {
       <div className="container-page">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">Depoimentos</span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-teal-deep dark:text-white md:text-4xl">
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-teal-deep dark:text-white sm:mt-4 xs:text-3xl md:text-4xl">
             Famílias que confiam no cuidado GE
           </h2>
         </div>
 
         <div
-          className="relative mx-auto mt-14 max-w-3xl"
+          className="relative mx-auto mt-9 max-w-3xl sm:mt-10 md:mt-14"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <Quote className="mx-auto h-9 w-9 text-teal-soft" strokeWidth={1.5} />
+          <Quote className="mx-auto h-8 w-8 text-teal-soft sm:h-9 sm:w-9" strokeWidth={1.5} />
 
-          <div className="relative mt-6 min-h-[220px]">
+          <div className="relative mt-5 min-h-[180px] sm:mt-6 sm:min-h-[220px]">
             {loading ? (
               <div className="mx-auto max-w-2xl animate-pulse space-y-3 px-4">
                 <div className="mx-auto h-5 w-5/6 rounded-full bg-sand-line dark:bg-white/10" />
@@ -122,10 +122,10 @@ export default function Testimonials() {
                     transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                     className="text-center"
                   >
-                    <blockquote className="mx-auto max-w-2xl font-display text-xl font-medium leading-relaxed text-sand-ink dark:text-white/90 md:text-2xl">
+                    <blockquote className="mx-auto max-w-2xl font-display text-lg font-medium leading-relaxed text-sand-ink dark:text-white/90 xs:text-xl md:text-2xl">
                       “{t.quote}”
                     </blockquote>
-                    <figcaption className="mt-6">
+                    <figcaption className="mt-5 sm:mt-6">
                       <p className="text-sm font-semibold text-teal-deep dark:text-white">{t.author}</p>
                       {t.role && <p className="text-xs text-sand-stone dark:text-white/55">{t.role}</p>}
                     </figcaption>
@@ -136,7 +136,7 @@ export default function Testimonials() {
           </div>
 
           {testimonials.length > 1 && (
-            <div className="mt-8 flex items-center justify-center gap-6">
+            <div className="mt-6 flex items-center justify-center gap-4 sm:mt-8 sm:gap-6">
               <button
                 onClick={prev}
                 aria-label="Depoimento anterior"
@@ -174,7 +174,7 @@ export default function Testimonials() {
             </div>
           )}
 
-          <div className="mt-10 flex justify-center">
+          <div className="mt-7 flex justify-center sm:mt-10">
             <button
               type="button"
               onClick={() => setFormOpen(true)}

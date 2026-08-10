@@ -7,12 +7,12 @@ export default function Differentials() {
       <div className="container-page">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow justify-center">Diferenciais</span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-teal-deep dark:text-white md:text-4xl">
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-teal-deep dark:text-white sm:mt-4 xs:text-3xl md:text-4xl">
             O que guia cada atendimento
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-9 grid gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 md:mt-14 md:gap-6 lg:grid-cols-5">
           {differentials.map((item, i) => (
             <motion.div
               key={item.title}
@@ -21,12 +21,12 @@ export default function Differentials() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (i % 5) * 0.08 }}
               whileHover={{ y: -4 }}
-              className="rounded-xl2 border border-sand-line bg-teal-mist/60 p-6 transition-shadow duration-300 hover:shadow-card dark:border-white/10 dark:bg-white/5"
+              className="rounded-xl2 border border-sand-line bg-teal-mist/60 p-5 transition-shadow duration-300 hover:shadow-card dark:border-white/10 dark:bg-white/5 sm:p-6"
             >
-              <div className="grid h-12 w-12 place-items-center rounded-full bg-white text-teal-deep shadow-card dark:bg-white/10 dark:text-teal-soft">
+              <div className="grid h-11 w-11 place-items-center rounded-full bg-white text-teal-deep shadow-card dark:bg-white/10 dark:text-teal-soft sm:h-12 sm:w-12">
                 <item.icon className="h-5 w-5" strokeWidth={1.75} />
               </div>
-              <h3 className="mt-5 font-display text-base font-bold text-teal-deep dark:text-white">
+              <h3 className="mt-4 font-display text-base font-bold text-teal-deep dark:text-white sm:mt-5">
                 {item.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-sand-stone dark:text-white/65">

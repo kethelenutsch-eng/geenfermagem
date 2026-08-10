@@ -7,7 +7,7 @@ export default function About() {
 
   return (
     <section id="sobre" className="section-pad bg-teal-mist/60 transition-colors duration-300 dark:bg-teal-nightSoft">
-      <div className="container-page grid items-center gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <div className="container-page grid items-center gap-9 sm:gap-11 md:gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <motion.div
           initial={{ opacity: 0, x: -24 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -49,14 +49,14 @@ export default function About() {
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="eyebrow">Sobre</span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-teal-deep dark:text-white md:text-4xl">
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-teal-deep dark:text-white sm:mt-4 xs:text-3xl md:text-4xl">
             Gabriella Elen
           </h2>
           <p className="mt-2 text-sm font-medium text-teal-mid dark:text-teal-soft">
             Enfermeira graduada e registrada no COREN
           </p>
 
-          <div className="mt-6 space-y-4 text-base leading-relaxed text-sand-stone dark:text-white/65">
+          <div className="mt-4 space-y-3 text-sm leading-relaxed text-sand-stone dark:text-white/65 sm:mt-6 sm:space-y-4 sm:text-base">
             <p>
               Atuo na assistência domiciliar com foco em um atendimento seguro,
               humanizado e individualizado, sempre atenta às particularidades
@@ -70,7 +70,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="mt-8 rounded-xl2 border border-sand-line bg-white p-6 dark:border-white/10 dark:bg-white/5">
+          <div className="mt-6 rounded-xl2 border border-sand-line bg-white p-5 dark:border-white/10 dark:bg-white/5 sm:mt-8 sm:p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-teal-mid dark:text-teal-soft">
               Missão
             </p>
