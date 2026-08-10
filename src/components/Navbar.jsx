@@ -91,7 +91,11 @@ export default function Navbar() {
   const header = (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
+        // com o menu aberto o cabeçalho fica sempre sólido — sem isso, no
+        // topo da página (antes de rolar) ele é transparente e o fundo
+        // escurecido do menu passava por trás dele, dando a impressão de
+        // que o cabeçalho tinha sumido
+        scrolled || open
           ? "bg-white/80 shadow-soft backdrop-blur-md dark:bg-teal-night/80"
           : "bg-transparent"
       }`}
