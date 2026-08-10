@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
+// Sem escolha salva no navegador, o padrão é sempre o modo claro — não
+// segue a preferência de tema do sistema operacional de quem visita.
 function getInitialTheme() {
   if (typeof window === "undefined") return "light";
   const stored = window.localStorage.getItem("ge-theme");
-  if (stored === "dark" || stored === "light") return stored;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return stored === "dark" ? "dark" : "light";
 }
 
 // Botão de alternância claro/escuro — mesmo espírito do switch com ícones

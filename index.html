@@ -7,12 +7,13 @@
     <meta name="description" content="GE Enfermagem Domiciliar — cuidado de enfermagem humanizado no conforto da sua casa. Atendimento em Belo Horizonte e região metropolitana." />
     <title>GE Enfermagem Domiciliar | Cuidado humanizado em casa</title>
     <script>
-      // Aplica o tema salvo (ou a preferência do sistema) antes da primeira
-      // pintura, para não piscar claro-depois-escuro ao carregar a página.
+      // Aplica o tema salvo antes da primeira pintura, para não piscar
+      // claro-depois-escuro ao carregar a página. Sem escolha salva, o
+      // padrão é sempre claro — não segue a preferência do sistema
+      // operacional de quem está visitando.
       (function () {
         try {
-          var stored = localStorage.getItem("ge-theme");
-          var dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var dark = localStorage.getItem("ge-theme") === "dark";
           document.documentElement.classList.toggle("dark", dark);
           document.documentElement.style.colorScheme = dark ? "dark" : "light";
         } catch (e) {}
