@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { whatsappLink } from "../lib/whatsapp";
@@ -17,6 +17,15 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  // guarda o link clicado no drawer para navegar até ele só depois que a
+  // trava de scroll for liberada — evita a "briga" entre o pulo até a
+  // seção e a restauração da posição antiga de rolagem
+  const pendingNavRef = useRef(null);
+
+  const closeAndNavigate = (href) => {
+    pendingNavRef.current = href;
+    setOpen(false);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -57,8 +66,24 @@ export default function Navbar() {
       body.style.left = previous.left;
       body.style.right = previous.right;
       body.style.width = previous.width;
-      window.scrollTo(0, scrollY);
       window.removeEventListener("keydown", onKey);
+
+      const pendingHref = pendingNavRef.current;
+      pendingNavRef.current = null;
+      if (pendingHref) {
+        // fecho normal (X, Esc, clique fora): volta pro ponto exato de
+        // onde a pessoa parou.
+        // clique num link: só agora, com a página já destravada, pula
+        // suavemente até a seção — sem isso os dois pulos brigavam entre
+        // si e o menu parecia travar/demorar pra reagir.
+        const target = document.querySelector(pendingHref);
+        if (target) {
+          requestAnimationFrame(() => target.scrollIntoView({ behavior: "smooth", block: "start" }));
+        }
+        history.pushState(null, "", pendingHref);
+      } else {
+        window.scrollTo(0, scrollY);
+      }
     };
   }, [open]);
 
@@ -162,7 +187,10 @@ export default function Navbar() {
                   <li key={l.href}>
                     <a
                       href={l.href}
-                      onClick={() => setOpen(false)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        closeAndNavigate(l.href);
+                      }}
                       className="block rounded-xl px-3.5 py-3.5 text-base font-medium text-sand-ink transition-colors hover:bg-teal-mist dark:text-white/90 dark:hover:bg-white/5"
                     >
                       {l.label}
