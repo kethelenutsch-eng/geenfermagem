@@ -14,6 +14,12 @@ de código é necessária):
    Foto da Gabriella Elen (retrato profissional).
    Formato retrato, proporção aproximada 4:5 (ex.: 1000 x 1250px ou maior).
 
+3) hero-detalhe-1.jpg, hero-detalhe-2.jpg, hero-detalhe-3.jpg
+   As 3 fotos pequenas ao lado da foto principal, no topo do site.
+   Formato retrato/vertical funciona melhor (a foto é recortada para
+   preencher o quadro, então evite fotos com informação importante bem
+   nas bordas).
+
 Dicas:
 - Prefira .jpg de boa qualidade mas não muito pesado (idealmente < 500KB
   cada, pode comprimir em squoosh.app ou tinypng.com antes de salvar aqui).

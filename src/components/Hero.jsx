@@ -1,11 +1,69 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, ArrowRight, UserRound } from "lucide-react";
+import { MessageCircle, ArrowRight } from "lucide-react";
 import { whatsappLink } from "../lib/whatsapp";
 
-export default function Hero() {
-  const [imgOk, setImgOk] = useState(true);
+// Pequeno ramo ornamental — mesmo espírito da folhagem da logo, só que
+// desenhado em traço simples para servir de detalhe discreto na Hero.
+function LeafSprig({ className = "" }) {
+  return (
+    <svg viewBox="0 0 60 60" className={className} aria-hidden="true">
+      <path
+        d="M30 55 C 28 40, 20 30, 8 22"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <ellipse cx="14" cy="26" rx="7" ry="3.2" fill="currentColor" opacity="0.55" transform="rotate(-35 14 26)" />
+      <ellipse cx="22" cy="35" rx="6" ry="2.8" fill="currentColor" opacity="0.5" transform="rotate(-20 22 35)" />
+      <ellipse cx="28" cy="46" rx="5.5" ry="2.5" fill="currentColor" opacity="0.45" transform="rotate(-10 28 46)" />
+    </svg>
+  );
+}
 
+// "position" ajusta o enquadramento (object-position) de cada foto — o
+// assunto principal fica em alturas diferentes na foto original de cada
+// uma, então um recorte central "cru" (50% 50%) deixava uma foto com o
+// assunto grande e centralizado e outra com metade cortada fora.
+// "zoom" compensa fotos onde o assunto (seringa, mãos, abraço, estetoscópio)
+// aparece menor/mais distante na foto original, para que o "tamanho" do
+// assunto pareça parecido nas quatro fotos mesmo com enquadramentos
+// diferentes.
+const heroPhotos = [
+  {
+    src: "/images/hero-enfermeira.jpg",
+    alt: "Enfermeira preparando medicação para atendimento domiciliar",
+    position: "50% 50%",
+    zoom: 1,
+  },
+  { src: "/images/hero-detalhe-1.jpg", alt: "Cuidado com carinho no atendimento domiciliar", position: "50% 52%", zoom: 1 },
+  { src: "/images/hero-detalhe-2.jpg", alt: "Acolhimento humanizado ao paciente", position: "50% 28%", zoom: 1.15 },
+  { src: "/images/hero-detalhe-3.jpg", alt: "Planejamento do cuidado de enfermagem", position: "50% 58%", zoom: 1.55 },
+];
+
+function DetailPhoto({ photo, children }) {
+  const [ok, setOk] = useState(true);
+  if (!ok) return null;
+  return (
+    <div className="relative aspect-square">
+      <div className="h-full w-full overflow-hidden rounded-xl2 bg-teal-mist shadow-card">
+        <img
+          src={photo.src}
+          alt={photo.alt}
+          loading="lazy"
+          decoding="async"
+          style={{ objectPosition: photo.position, transformOrigin: photo.position, transform: `scale(${photo.zoom})` }}
+          className="h-full w-full object-cover"
+          onError={() => setOk(false)}
+        />
+      </div>
+      {children}
+    </div>
+  );
+}
+
+export default function Hero() {
   return (
     <section id="topo" className="relative overflow-hidden bg-teal-mist pt-28 pb-16 transition-colors duration-300 dark:bg-teal-night sm:pt-32 sm:pb-20 md:pt-36 lg:pt-40 lg:pb-28">
       {/* organic teal shapes in the background */}
@@ -60,32 +118,21 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          className="relative"
+          className="relative mx-auto w-full max-w-lg"
         >
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-xl3 border border-white/60 shadow-lift dark:border-white/10">
-            {imgOk ? (
-              <img
-                src="/images/hero-enfermeira.jpg"
-                alt="Enfermeira realizando atendimento domiciliar humanizado"
-                className="h-full w-full object-cover"
-                onError={() => setImgOk(false)}
-              />
-            ) : (
-              <div className="flex h-full w-full flex-col items-center justify-center gap-4 bg-gradient-to-br from-teal-pale to-teal-soft/40 p-8 text-center">
-                <div className="grid h-20 w-20 place-items-center rounded-full bg-white/70">
-                  <UserRound className="h-9 w-9 text-teal-deep" strokeWidth={1.5} />
-                </div>
-                <p className="text-xs font-medium uppercase tracking-[0.12em] text-teal-deep/70">
-                  Substitua por uma foto profissional
-                  <br />
-                  em <code className="rounded bg-white/60 px-1">/public/images/hero-enfermeira.jpg</code>
-                </p>
+          {/* mosaico 2×2 — as 4 fotos no mesmo tamanho, cada uma com a
+              mesma moldura branca ornamentada */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <DetailPhoto photo={heroPhotos[0]}>
+              <LeafSprig className="pointer-events-none absolute -right-2 -top-5 h-9 w-9 rotate-[35deg] text-teal-soft/70 dark:text-teal-soft/35 sm:-right-3 sm:-top-6 sm:h-11 sm:w-11" />
+              <div className="absolute -bottom-4 -left-4 hidden rounded-xl2 bg-white px-4 py-3 shadow-card dark:bg-teal-nightSoft sm:block">
+                <p className="font-display text-lg font-bold text-teal-deep dark:text-white">COREN</p>
+                <p className="text-[11px] font-medium text-sand-stone dark:text-white/60">Registro ativo</p>
               </div>
-            )}
-          </div>
-          <div className="absolute -bottom-6 -left-6 hidden rounded-xl2 bg-white px-5 py-4 shadow-card dark:bg-teal-nightSoft sm:block">
-            <p className="font-display text-2xl font-bold text-teal-deep dark:text-white">COREN</p>
-            <p className="text-xs font-medium text-sand-stone dark:text-white/60">Registro ativo</p>
+            </DetailPhoto>
+            {heroPhotos.slice(1).map((photo) => (
+              <DetailPhoto key={photo.src} photo={photo} />
+            ))}
           </div>
         </motion.div>
       </div>

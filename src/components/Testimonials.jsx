@@ -1,37 +1,56 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, MessageSquarePlus, Quote, X, Check } from "lucide-react";
-import { testimonials as fallbackTestimonials } from "../data/content";
 import { getSupabase, supabaseEnabled } from "../lib/supabase";
 import { whatsappLink } from "../lib/whatsapp";
 
 const MAX_DOTS = 8;
 const QUOTE_MAX = 500;
 const AUTHOR_MAX = 80;
+// Se a rede/Supabase ficar realmente fora do ar, o cliente pode ficar
+// tentando de novo por um bom tempo antes de desistir. Isso garante que a
+// seção nunca fique travada no "carregando" além desse limite.
+const NETWORK_TIMEOUT_MS = 8000;
+
+function withTimeout(promise, ms) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), ms)),
+  ]);
+}
 
 export default function Testimonials() {
-  const [dbTestimonials, setDbTestimonials] = useState([]);
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
 
-  // Depoimentos reais enviados pelo site aparecem primeiro; os de exemplo
-  // ficam como conteúdo de reserva (dá pra apagá-los em data/content.js
-  // quando já houver depoimentos reais suficientes).
-  const testimonials = dbTestimonials.length
-    ? [...dbTestimonials, ...fallbackTestimonials]
-    : fallbackTestimonials;
-
   const loadTestimonials = useCallback(async () => {
-    if (!supabaseEnabled) return;
-    const supabase = await getSupabase();
-    const { data, error } = await supabase
-      .from("testimonials")
-      .select("id, author, role, quote")
-      .eq("approved", true)
-      .order("created_at", { ascending: false })
-      .limit(24);
-    if (!error && data) setDbTestimonials(data);
+    if (!supabaseEnabled) {
+      setLoading(false);
+      return;
+    }
+    // Qualquer falha aqui (rede fora do ar, Supabase indisponível, etc.)
+    // não pode deixar a seção travada no esqueleto de carregamento para
+    // sempre — cai para a mensagem de "nenhum depoimento ainda".
+    try {
+      const supabase = await getSupabase();
+      const { data, error } = await withTimeout(
+        supabase
+          .from("testimonials")
+          .select("id, author, role, quote")
+          .eq("approved", true)
+          .order("created_at", { ascending: false })
+          .limit(24),
+        NETWORK_TIMEOUT_MS
+      );
+      if (!error && data) setTestimonials(data);
+    } catch {
+      // silencioso — a mensagem de fallback já cobre esse caso
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -44,10 +63,10 @@ export default function Testimonials() {
   const prev = () => setIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
 
   useEffect(() => {
-    if (paused || formOpen) return;
+    if (paused || formOpen || testimonials.length <= 1) return;
     const id = setInterval(next, 6500);
     return () => clearInterval(id);
-  }, [paused, formOpen, next]);
+  }, [paused, formOpen, next, testimonials.length]);
 
   // se a lista mudar (novo depoimento enviado) e o índice ficar fora do
   // alcance, volta pro início
@@ -58,7 +77,7 @@ export default function Testimonials() {
   const t = testimonials[index];
 
   const handleSubmitted = (row) => {
-    setDbTestimonials((prev) => [row, ...prev]);
+    setTestimonials((prev) => [row, ...prev]);
     setIndex(0);
     setFormOpen(false);
   };
@@ -81,64 +100,79 @@ export default function Testimonials() {
           <Quote className="mx-auto h-9 w-9 text-teal-soft" strokeWidth={1.5} />
 
           <div className="relative mt-6 min-h-[220px]">
-            <AnimatePresence mode="wait">
-              {t && (
-                <motion.figure
-                  key={t.id ?? index}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-center"
-                >
-                  <blockquote className="mx-auto max-w-2xl font-display text-xl font-medium leading-relaxed text-sand-ink dark:text-white/90 md:text-2xl">
-                    “{t.quote}”
-                  </blockquote>
-                  <figcaption className="mt-6">
-                    <p className="text-sm font-semibold text-teal-deep dark:text-white">{t.author}</p>
-                    {t.role && <p className="text-xs text-sand-stone dark:text-white/55">{t.role}</p>}
-                  </figcaption>
-                </motion.figure>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <div className="mt-8 flex items-center justify-center gap-6">
-            <button
-              onClick={prev}
-              aria-label="Depoimento anterior"
-              className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-sand-line bg-white text-teal-deep transition-colors hover:bg-teal-pale dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 lg:h-10 lg:w-10"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-
-            {testimonials.length > MAX_DOTS ? (
-              <span className="text-xs font-medium text-sand-stone dark:text-white/55">
-                {index + 1} de {testimonials.length}
-              </span>
-            ) : (
-              <div className="flex items-center gap-3 sm:gap-2">
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setIndex(i)}
-                    aria-label={`Ir para depoimento ${i + 1}`}
-                    className={`tap-area h-2 rounded-full transition-all ${
-                      i === index ? "w-6 bg-teal-deep dark:bg-teal-soft" : "w-2 bg-sand-line hover:bg-teal-soft dark:bg-white/20"
-                    }`}
-                  />
-                ))}
+            {loading ? (
+              <div className="mx-auto max-w-2xl animate-pulse space-y-3 px-4">
+                <div className="mx-auto h-5 w-5/6 rounded-full bg-sand-line dark:bg-white/10" />
+                <div className="mx-auto h-5 w-2/3 rounded-full bg-sand-line dark:bg-white/10" />
               </div>
+            ) : testimonials.length === 0 ? (
+              <div className="text-center">
+                <p className="mx-auto max-w-md font-display text-lg font-medium leading-relaxed text-sand-stone dark:text-white/70">
+                  Seja a primeira pessoa a contar como foi sua experiência com o cuidado GE.
+                </p>
+              </div>
+            ) : (
+              <AnimatePresence mode="wait">
+                {t && (
+                  <motion.figure
+                    key={t.id ?? index}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -16 }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-center"
+                  >
+                    <blockquote className="mx-auto max-w-2xl font-display text-xl font-medium leading-relaxed text-sand-ink dark:text-white/90 md:text-2xl">
+                      “{t.quote}”
+                    </blockquote>
+                    <figcaption className="mt-6">
+                      <p className="text-sm font-semibold text-teal-deep dark:text-white">{t.author}</p>
+                      {t.role && <p className="text-xs text-sand-stone dark:text-white/55">{t.role}</p>}
+                    </figcaption>
+                  </motion.figure>
+                )}
+              </AnimatePresence>
             )}
-
-            <button
-              onClick={next}
-              aria-label="Próximo depoimento"
-              className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-sand-line bg-white text-teal-deep transition-colors hover:bg-teal-pale dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 lg:h-10 lg:w-10"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
           </div>
+
+          {testimonials.length > 1 && (
+            <div className="mt-8 flex items-center justify-center gap-6">
+              <button
+                onClick={prev}
+                aria-label="Depoimento anterior"
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-sand-line bg-white text-teal-deep transition-colors hover:bg-teal-pale dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 lg:h-10 lg:w-10"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+
+              {testimonials.length > MAX_DOTS ? (
+                <span className="text-xs font-medium text-sand-stone dark:text-white/55">
+                  {index + 1} de {testimonials.length}
+                </span>
+              ) : (
+                <div className="flex items-center gap-3 sm:gap-2">
+                  {testimonials.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setIndex(i)}
+                      aria-label={`Ir para depoimento ${i + 1}`}
+                      className={`tap-area h-2 rounded-full transition-all ${
+                        i === index ? "w-6 bg-teal-deep dark:bg-teal-soft" : "w-2 bg-sand-line hover:bg-teal-soft dark:bg-white/20"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
+
+              <button
+                onClick={next}
+                aria-label="Próximo depoimento"
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-sand-line bg-white text-teal-deep transition-colors hover:bg-teal-pale dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 lg:h-10 lg:w-10"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          )}
 
           <div className="mt-10 flex justify-center">
             <button
@@ -190,21 +224,29 @@ function TestimonialFormModal({ onClose, onSubmitted }) {
     }
 
     setStatus("sending");
-    const supabase = await getSupabase();
-    const { data, error } = await supabase
-      .from("testimonials")
-      .insert({ author: author.trim(), role: role.trim() || null, quote: quote.trim() })
-      .select("id, author, role, quote")
-      .single();
+    try {
+      const supabase = await getSupabase();
+      const { data, error } = await withTimeout(
+        supabase
+          .from("testimonials")
+          .insert({ author: author.trim(), role: role.trim() || null, quote: quote.trim() })
+          .select("id, author, role, quote")
+          .single(),
+        NETWORK_TIMEOUT_MS
+      );
 
-    if (error || !data) {
+      if (error || !data) {
+        setStatus("error");
+        setErrorMsg("Não foi possível enviar agora. Você pode tentar de novo ou mandar pelo WhatsApp.");
+        return;
+      }
+
+      setStatus("done");
+      setTimeout(() => onSubmitted(data), 900);
+    } catch {
       setStatus("error");
       setErrorMsg("Não foi possível enviar agora. Você pode tentar de novo ou mandar pelo WhatsApp.");
-      return;
     }
-
-    setStatus("done");
-    setTimeout(() => onSubmitted(data), 900);
   };
 
   return (

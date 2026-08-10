@@ -21,9 +21,8 @@ npm run preview
 ## Antes de publicar — pendências para preencher
 
 1. ~~**WhatsApp**~~ — ok, já configurado em `src/lib/whatsapp.js` (+55 31 97235-4867).
-2. ~~**Fotos**~~ — ok, `hero-enfermeira.jpg` e `sobre-gabriella.jpg` já estão em `public/images/`. Galeria "No dia a dia" (`src/components/WorkGallery.jsx`) usa `trabalho-1.jpg` a `trabalho-5.jpg`, também em `public/images/`.
-   Obs.: as 5 fotos da galeria vieram de capturas de tela (resolução ~300-600px de largura) — dá pra usar, mas se você tiver os arquivos originais do celular/WhatsApp em resolução maior, vale substituir pelos originais para ficar mais nítido em telas grandes.
-3. ~~**Depoimentos**~~ — os depoimentos de exemplo em `src/data/content.js` continuam como conteúdo de reserva, mas agora o site também deixa qualquer visitante enviar o depoimento dele mesmo, direto pela seção "Depoimentos" — e ele já aparece publicado na hora. Isso usa um banco de dados grátis (Supabase); veja `supabase/schema.sql` para configurar (passo a passo no `.env.example`).
+2. ~~**Fotos**~~ — ok, `hero-enfermeira.jpg`, `sobre-gabriella.jpg` e `hero-detalhe-1.jpg` a `hero-detalhe-3.jpg` (as 3 fotos pequenas ao lado da foto principal do topo) já estão em `public/images/`.
+3. ~~**Depoimentos**~~ — o site deixa qualquer visitante enviar o próprio depoimento direto pela seção "Depoimentos", publicado na hora (sem conteúdo de exemplo/fictício — enquanto não houver nenhum real, aparece um convite para ser a primeira pessoa a contar). Isso usa um banco de dados grátis (Supabase); veja `supabase/schema.sql` para configurar (passo a passo no `.env.example`).
 4. **Logo — como colocar a sua manualmente**:
    Exporte o ícone GE (só o ícone, sem o texto "Enfermagem Domiciliar" embaixo — isso o
    código já escreve do lado) como PNG com fundo transparente, do Canva/Figma/onde você

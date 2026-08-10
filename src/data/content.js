@@ -139,28 +139,6 @@ export const cities = [
   { name: "Confins" },
 ];
 
-// Depoimentos de exemplo — substitua pelos relatos reais de pacientes/famílias atendidos.
-export const testimonials = [
-  {
-    quote:
-      "O cuidado com minha mãe foi além do que eu esperava. Além da parte técnica, sempre explicaram cada passo com muita paciência para toda a família.",
-    author: "Depoimento de exemplo",
-    role: "Familiar de paciente atendido",
-  },
-  {
-    quote:
-      "Ter um plano de cuidados organizado e um caderno de evolução fez toda a diferença no dia a dia dos cuidadores.",
-    author: "Depoimento de exemplo",
-    role: "Cuidadora familiar",
-  },
-  {
-    quote:
-      "Atendimento pontual, humano e muito profissional. Me senti segura em cada visita.",
-    author: "Depoimento de exemplo",
-    role: "Paciente atendida",
-  },
-];
-
 export const faqs = [
   {
     question: "Quais regiões vocês atendem?",

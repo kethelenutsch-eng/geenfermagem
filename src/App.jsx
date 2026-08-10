@@ -4,7 +4,6 @@ import TrustBar from "./components/TrustBar";
 import Services from "./components/Services";
 import HowItWorks from "./components/HowItWorks";
 import About from "./components/About";
-import WorkGallery from "./components/WorkGallery";
 import Differentials from "./components/Differentials";
 import ServiceArea from "./components/ServiceArea";
 import Testimonials from "./components/Testimonials";
@@ -22,7 +21,6 @@ export default function App() {
         <Services />
         <HowItWorks />
         <About />
-        <WorkGallery />
         <Differentials />
         <ServiceArea />
         <Testimonials />
