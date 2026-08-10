@@ -5,9 +5,9 @@ import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 const photos = [
   { src: "/images/trabalho-1.jpg", caption: "Suporte em ambiente hospitalar" },
   { src: "/images/trabalho-2.jpg", caption: "Ação de vacinação" },
-  { src: "/images/trabalho-3.jpg", caption: "Ação de capacitação comunitária" },
-  { src: "/images/trabalho-4.jpg", caption: "Rotina de atendimento" },
-  { src: "/images/trabalho-5.jpg", caption: "Apresentação científica" },
+  { src: "/images/trabalho-3.jpg", caption: "Cuidado com carinho" },
+  { src: "/images/trabalho-4.jpg", caption: "Acolhimento humanizado" },
+  { src: "/images/trabalho-5.jpg", caption: "Planejamento do cuidado" },
 ];
 
 // A trilha é composta duas vezes em sequência para permitir um laço

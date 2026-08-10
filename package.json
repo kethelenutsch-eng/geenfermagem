@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.20",
+    "@supabase/supabase-js": "^2.112.2",
     "clsx": "^2.1.1",
     "framer-motion": "^11.2.10",
     "lucide-react": "^0.400.0",
