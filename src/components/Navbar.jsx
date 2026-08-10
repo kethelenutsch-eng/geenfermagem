@@ -25,16 +25,39 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // trava o scroll da página por trás enquanto o menu está aberto, e
-  // fecha com Esc — o drawer nunca deve empurrar/redimensionar o conteúdo
+  // Trava o scroll da página por trás enquanto o menu está aberto, e fecha
+  // com Esc. Só usar "overflow: hidden" no body não é suficiente — no
+  // Safari/iOS o scroll "vaza" por trás mesmo assim, o que faz um elemento
+  // fixed (como o drawer) parecer tremer/sumir durante o gesto de rolar.
+  // Fixar o body no lugar (guardando e restaurando a posição do scroll) é a
+  // forma que funciona de verdade em todos os navegadores.
   useEffect(() => {
     if (!open) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const scrollY = window.scrollY;
+    const body = document.body;
+    const previous = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+    };
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+
     const onKey = (e) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
+
     return () => {
-      document.body.style.overflow = previousOverflow;
+      body.style.position = previous.position;
+      body.style.top = previous.top;
+      body.style.left = previous.left;
+      body.style.right = previous.right;
+      body.style.width = previous.width;
+      window.scrollTo(0, scrollY);
       window.removeEventListener("keydown", onKey);
     };
   }, [open]);
