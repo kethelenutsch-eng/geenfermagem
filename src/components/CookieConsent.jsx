@@ -44,32 +44,33 @@ export default function CookieConsent() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 12, scale: 0.97 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-4 left-4 z-[70] w-[calc(100%-2rem)] max-w-[260px] rounded-xl2 border border-sand-line bg-white p-4 shadow-lift dark:border-white/10 dark:bg-teal-nightSoft sm:bottom-5 sm:left-5"
+          className="fixed bottom-3 left-3 z-[70] w-[calc(100%-1.5rem)] max-w-[220px] rounded-xl2 border border-sand-line bg-white p-3 shadow-lift dark:border-white/10 dark:bg-teal-nightSoft sm:bottom-4 sm:left-4"
         >
           <button
             type="button"
             onClick={dismiss}
             aria-label="Fechar aviso"
-            className="tap-area absolute right-2.5 top-2.5 grid h-6 w-6 place-items-center rounded-full text-sand-stone transition-colors hover:bg-teal-pale hover:text-teal-deep dark:text-white/50 dark:hover:bg-white/10 dark:hover:text-white"
+            className="tap-area absolute right-2 top-2 grid h-5 w-5 place-items-center rounded-full text-sand-stone transition-colors hover:bg-teal-pale hover:text-teal-deep dark:text-white/50 dark:hover:bg-white/10 dark:hover:text-white"
           >
-            <X className="h-3.5 w-3.5" />
+            <X className="h-3 w-3" />
           </button>
 
-          <div className="grid h-8 w-8 place-items-center rounded-full bg-teal-pale text-teal-deep dark:bg-white/10 dark:text-teal-soft">
-            <Cookie className="h-4 w-4" strokeWidth={1.75} />
+          <div className="flex items-center gap-1.5 pr-4">
+            <div className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-teal-pale text-teal-deep dark:bg-white/10 dark:text-teal-soft">
+              <Cookie className="h-3 w-3" strokeWidth={2} />
+            </div>
+            <p className="font-display text-[11.5px] font-bold text-teal-deep dark:text-white">
+              Sua privacidade
+            </p>
           </div>
 
-          <p className="mt-2.5 pr-4 font-display text-[13px] font-bold text-teal-deep dark:text-white">
-            Sua privacidade
-          </p>
-          <p className="mt-1 text-[12px] leading-relaxed text-sand-stone dark:text-white/65">
-            Usamos apenas armazenamento local do navegador para lembrar sua preferência de tema e este
-            aceite, sem cookies de rastreamento ou publicidade. Saiba mais na{" "}
+          <p className="mt-1.5 text-[10.5px] leading-snug text-sand-stone dark:text-white/65">
+            Usamos armazenamento local só para lembrar suas preferências, sem cookies de rastreamento.{" "}
             <a
               href="/politica-de-privacidade"
               className="font-medium text-teal-mid underline underline-offset-2 hover:text-teal-deep dark:text-teal-soft dark:hover:text-white"
             >
-              Política de Privacidade
+              Saiba mais
             </a>
             .
           </p>
@@ -77,7 +78,7 @@ export default function CookieConsent() {
           <button
             type="button"
             onClick={accept}
-            className="tap-area mt-3 w-full rounded-full bg-teal-deep px-4 py-2 text-xs font-semibold text-white shadow-card transition-colors hover:bg-teal"
+            className="tap-area mt-2 w-full rounded-full bg-teal-deep px-3 py-1.5 text-[11px] font-semibold text-white shadow-card transition-colors hover:bg-teal"
           >
             Entendi e aceito
           </button>
