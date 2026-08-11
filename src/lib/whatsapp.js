@@ -1,5 +1,5 @@
-// Número real do WhatsApp da clínica (+55 31 97235-4867).
-export const WHATSAPP_NUMBER = "5531972354867";
+// Número real do WhatsApp da clínica (+55 31 99119-6877).
+export const WHATSAPP_NUMBER = "5531991196877";
 
 export function whatsappLink(message) {
   const text = encodeURIComponent(
