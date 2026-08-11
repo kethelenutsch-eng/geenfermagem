@@ -39,6 +39,25 @@ h1, h2, h3, h4 {
   @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-teal-mid;
 }
 
+/* Tipografia das páginas legais (Política de Privacidade, Termos de Uso) —
+   texto corrido simples, sem precisar do plugin @tailwindcss/typography só
+   para duas páginas estáticas. */
+.prose-legal h2 {
+  @apply font-display text-xl font-bold text-teal-deep dark:text-white;
+}
+.prose-legal h3 {
+  @apply font-display text-base font-semibold text-teal-deep dark:text-white;
+}
+.prose-legal ul {
+  @apply ml-5 list-disc space-y-1.5;
+}
+.prose-legal a {
+  @apply font-medium text-teal-mid underline underline-offset-2 hover:text-teal-deep dark:text-teal-soft dark:hover:text-white;
+}
+.prose-legal strong {
+  @apply font-semibold text-teal-deep dark:text-white;
+}
+
 .section-pad {
   @apply py-12 xs:py-14 sm:py-16 md:py-20 lg:py-28;
 }

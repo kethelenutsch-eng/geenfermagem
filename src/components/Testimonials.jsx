@@ -199,6 +199,7 @@ function TestimonialFormModal({ onClose, onSubmitted }) {
   const [role, setRole] = useState("");
   const [quote, setQuote] = useState("");
   const [honeypot, setHoneypot] = useState("");
+  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState("idle"); // idle | sending | error | done
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -210,7 +211,8 @@ function TestimonialFormModal({ onClose, onSubmitted }) {
   }, [status]);
 
   const quoteTooShort = quote.trim().length > 0 && quote.trim().length < 10;
-  const canSubmit = author.trim().length >= 2 && quote.trim().length >= 10 && quote.length <= QUOTE_MAX;
+  const canSubmit =
+    author.trim().length >= 2 && quote.trim().length >= 10 && quote.length <= QUOTE_MAX && consent;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -361,6 +363,23 @@ function TestimonialFormModal({ onClose, onSubmitted }) {
                 )}
               </div>
             </div>
+
+            <label className="mt-5 flex cursor-pointer items-start gap-2.5 text-xs leading-relaxed text-sand-stone dark:text-white/60">
+              <input
+                type="checkbox"
+                checked={consent}
+                onChange={(e) => setConsent(e.target.checked)}
+                required
+                className="mt-0.5 h-4 w-4 shrink-0 rounded border-sand-line text-teal-deep focus:ring-teal-mid dark:border-white/20"
+              />
+              <span>
+                Autorizo a publicação do meu depoimento neste site, conforme a{" "}
+                <a href="/politica-de-privacidade" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                  Política de Privacidade
+                </a>
+                . Posso pedir a remoção a qualquer momento.
+              </span>
+            </label>
 
             {status === "error" && (
               <p className="mt-4 text-sm text-red-500 dark:text-red-400">

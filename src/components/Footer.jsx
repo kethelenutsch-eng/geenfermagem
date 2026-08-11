@@ -27,9 +27,19 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <p className="container-page py-6 text-center text-xs text-white/40">
-          © {new Date().getFullYear()} GE Enfermagem Domiciliar. Todos os direitos reservados.
-        </p>
+        <div className="container-page flex flex-col items-center gap-2 py-6 text-center sm:flex-row sm:justify-between sm:gap-4 sm:text-left">
+          <p className="text-xs text-white/40">
+            © {new Date().getFullYear()} GE Enfermagem Domiciliar. Todos os direitos reservados.
+          </p>
+          <nav className="flex items-center gap-4 text-xs text-white/50">
+            <a href="/politica-de-privacidade" className="transition-colors hover:text-white">
+              Política de Privacidade
+            </a>
+            <a href="/termos-de-uso" className="transition-colors hover:text-white">
+              Termos de Uso
+            </a>
+          </nav>
+        </div>
       </div>
     </footer>
   );
