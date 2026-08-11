@@ -1,0 +1,30 @@
+name: Backup do banco de dados
+
+on:
+  schedule:
+    # Todo dia às 06:00 UTC (03:00 no horário de Brasília)
+    - cron: '0 6 * * *'
+  workflow_dispatch: {} # permite rodar manualmente pela aba Actions do GitHub
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Exporta o banco de dados (Supabase)
+        run: |
+          npx --yes supabase db dump --db-url "${{ secrets.SUPABASE_DB_URL }}" -f backup.sql
+
+      - name: Compacta e criptografa o backup
+        run: |
+          gzip backup.sql
+          gpg --batch --yes --symmetric --cipher-algo AES256 \
+            --passphrase "${{ secrets.BACKUP_ENCRYPTION_PASSPHRASE }}" \
+            -o backup.sql.gz.gpg backup.sql.gz
+          rm backup.sql.gz
+
+      - name: Guarda o backup por 30 dias
+        uses: actions/upload-artifact@v4
+        with:
+          name: backup-${{ github.run_id }}
+          path: backup.sql.gz.gpg
+          retention-days: 30
