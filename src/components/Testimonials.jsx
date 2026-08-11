@@ -320,7 +320,7 @@ function TestimonialFormModal({ onClose, onSubmitted }) {
                   value={author}
                   onChange={(e) => setAuthor(e.target.value)}
                   placeholder="Como quer ser identificado(a)"
-                  className="mt-1.5 w-full rounded-xl2 border border-sand-line bg-white px-4 py-2.5 text-sm text-sand-ink outline-none transition-colors focus:border-teal-mid dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder:text-white/40"
+                  className="mt-1.5 w-full rounded-xl2 border border-sand-line bg-white px-4 py-2.5 text-base text-sand-ink outline-none transition-colors focus:border-teal-mid dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder:text-white/40"
                 />
               </div>
 
@@ -335,7 +335,7 @@ function TestimonialFormModal({ onClose, onSubmitted }) {
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
                   placeholder="Ex.: Familiar de paciente, Cuidador(a)..."
-                  className="mt-1.5 w-full rounded-xl2 border border-sand-line bg-white px-4 py-2.5 text-sm text-sand-ink outline-none transition-colors focus:border-teal-mid dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder:text-white/40"
+                  className="mt-1.5 w-full rounded-xl2 border border-sand-line bg-white px-4 py-2.5 text-base text-sand-ink outline-none transition-colors focus:border-teal-mid dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder:text-white/40"
                 />
               </div>
 
@@ -356,7 +356,7 @@ function TestimonialFormModal({ onClose, onSubmitted }) {
                   value={quote}
                   onChange={(e) => setQuote(e.target.value)}
                   placeholder="Conte com suas palavras como foi o atendimento..."
-                  className="mt-1.5 w-full resize-none rounded-xl2 border border-sand-line bg-white px-4 py-2.5 text-sm leading-relaxed text-sand-ink outline-none transition-colors focus:border-teal-mid dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder:text-white/40"
+                  className="mt-1.5 w-full resize-none rounded-xl2 border border-sand-line bg-white px-4 py-2.5 text-base leading-relaxed text-sand-ink outline-none transition-colors focus:border-teal-mid dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder:text-white/40"
                 />
                 {quoteTooShort && (
                   <p className="mt-1 text-xs text-red-500 dark:text-red-400">Escreva um pouco mais (mínimo 10 caracteres).</p>
