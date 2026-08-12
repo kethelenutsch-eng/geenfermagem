@@ -3,13 +3,11 @@ import { whatsappLink } from "../lib/whatsapp";
 
 export default function PrivacyPolicy() {
   return (
-    <LegalPageLayout title="Política de Privacidade" updatedAt="11 de agosto de 2026">
+    <LegalPageLayout title="Política de Privacidade" updatedAt="12 de agosto de 2026">
       <p>
         Esta Política de Privacidade explica como a <strong>GE Enfermagem Domiciliar</strong> coleta,
         usa, armazena e protege os dados pessoais de quem visita este site, em conformidade com a{" "}
-        <strong>Lei Geral de Proteção de Dados (Lei nº 13.709/2018 — LGPD)</strong> e, para visitantes
-        de outras regiões, com o <strong>Regulamento Geral sobre a Proteção de Dados (GDPR)</strong> da
-        União Europeia.
+        <strong>Lei Geral de Proteção de Dados (Lei nº 13.709/2018 — LGPD)</strong>.
       </p>
 
       <section>
@@ -49,8 +47,8 @@ export default function PrivacyPolicy() {
         <h2>3. Por que usamos seus dados e base legal</h2>
         <p>
           Usamos os dados do formulário de depoimentos exclusivamente para exibir seu depoimento
-          publicamente nesta página, com base no seu <strong>consentimento</strong> (art. 7º, I da LGPD;
-          art. 6(1)(a) do GDPR), dado no momento do envio do formulário.
+          publicamente nesta página, com base no seu <strong>consentimento</strong> (art. 7º, I da LGPD),
+          dado no momento do envio do formulário.
         </p>
       </section>
 
@@ -89,7 +87,7 @@ export default function PrivacyPolicy() {
 
       <section>
         <h2>7. Seus direitos</h2>
-        <p>Conforme a LGPD (art. 18) e o GDPR, você tem direito a:</p>
+        <p>Conforme a LGPD (art. 18), você tem direito a:</p>
         <ul>
           <li>Confirmar se tratamos algum dado seu e acessá-lo;</li>
           <li>Corrigir dados incompletos, inexatos ou desatualizados;</li>
