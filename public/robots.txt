@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://geenfermagem.com.br/sitemap.xml
